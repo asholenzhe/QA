@@ -10,8 +10,8 @@ public class Login2Test extends TestBase {
     public void login2() {
         AccountData user = new AccountData("enzhe.ashrafullina@mail.ru", "A11r1ght!");
 
-        openHomePage();
-        openLoginForm();
-        login(user);
+        app.getNavigation().openHomePage();
+        app.getNavigation().openLoginForm();
+        app.getAuth().login(user);
     }
 }

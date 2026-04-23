@@ -12,10 +12,10 @@ public class CreateTest extends TestBase {
         AccountData user = new AccountData("enzhe.ashrafullina@mail.ru", "A11r1ght!");
         TaskData task = new TaskData("sleep all day");
 
-        openHomePage();
-        openLoginForm();
-        login(user);
-        closeOverlayIfPresent();
-        createTask(task);
+        app.getNavigation().openHomePage();
+        app.getNavigation().openLoginForm();
+        app.getAuth().login(user);
+        app.getTask().closeOverlayIfPresent();
+        app.getTask().createTask(task);
     }
 }
