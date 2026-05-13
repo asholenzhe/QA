@@ -4,6 +4,7 @@ import org.example.data.AccountData;
 import org.example.hepler.LoginHelper;
 import org.example.hepler.NavigationHelper;
 import org.example.hepler.TaskHelper;
+import org.example.settings.Settings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -20,7 +21,7 @@ public class AppManager {
     private AppManager() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        baseURL = "https://tweek.so";
+        baseURL = Settings.getBaseUrl(); // <-- было хардкод "https://tweek.so"
 
         navigation = new NavigationHelper(this, baseURL);
         auth = new LoginHelper(this);
@@ -43,16 +44,6 @@ public class AppManager {
     }
 
     public void ensureLoggedIn(AccountData user) {
-        if (navigation.isLoggedIn()) {
-            task.closeOverlayIfPresent();
-            return;
-        }
-        navigation.openHomePage();
-        if (navigation.isLoggedIn()) {
-            task.closeOverlayIfPresent();
-            return;
-        }
-        navigation.openLoginForm();
         auth.login(user);
         task.closeOverlayIfPresent();
     }
